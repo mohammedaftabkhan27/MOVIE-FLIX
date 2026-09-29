@@ -1,0 +1,695 @@
+/* =========================================================
+   PREMIUM MOVIE WEBSITE - DARK CINEMA THEME
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #f5f1e8;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    width: 100%;
+    background: rgba(8, 8, 8, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+nav {
+    width: 100%;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    padding: 10px 5%;
+    gap: 25px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+    width: 145px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SEARCH FORM
+========================================================= */
+
+nav form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+
+/* Search Box */
+
+nav form input[type="search"] {
+    width: min(420px, 35vw);
+    height: 42px;
+    padding: 0 18px;
+
+    background: #151515;
+    color: #ffffff;
+
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+
+    outline: none;
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+nav form input[type="search"]::placeholder {
+    color: #888;
+}
+
+nav form input[type="search"]:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+nav form button[type="submit"] {
+    height: 42px;
+    padding: 0 20px;
+
+    background: #d4af37;
+    color: #080808;
+
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+nav form button[type="submit"]:hover {
+    background: #f1cf62;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+nav select {
+    height: 42px;
+    padding: 0 12px;
+
+    background: #151515;
+    color: #f5f1e8;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    outline: none;
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+nav select:hover,
+nav select:focus {
+    border-color: #d4af37;
+}
+
+
+/* =========================================================
+   SIGN IN BUTTON
+========================================================= */
+
+nav form button:last-child {
+    height: 42px;
+    padding: 0 20px;
+
+    background: transparent;
+    color: #d4af37;
+
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+nav form button:last-child:hover {
+    background: #d4af37;
+    color: #080808;
+
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+}
+
+
+/* =========================================================
+   HAMBURGER MENU
+========================================================= */
+
+#menu-toggle {
+    display: none;
+}
+
+nav label {
+    color: #f5f1e8;
+    font-size: 28px;
+    cursor: pointer;
+
+    padding: 5px 10px;
+
+    transition: 0.3s ease;
+}
+
+nav label:hover {
+    color: #d4af37;
+}
+
+
+/* =========================================================
+   DROPDOWN MENU
+========================================================= */
+
+.menu {
+    position: absolute;
+
+    top: 76px;
+    right: 5%;
+
+    width: 180px;
+
+    background: rgba(18, 18, 18, 0.98);
+
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    padding: 10px;
+
+    display: none;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+#menu-toggle:checked ~ .menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ddd;
+
+    padding: 13px 15px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.menu a:hover {
+    background: #d4af37;
+    color: #080808;
+}
+
+
+/* =========================================================
+   MOVIE SLIDER
+========================================================= */
+
+.slider {
+    width: 100%;
+    height: 520px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background: #050505;
+}
+
+.slides {
+    width: 500%;
+    height: 100%;
+
+    display: flex;
+
+    animation: movieSlider 25s infinite;
+}
+
+.slide {
+    width: 20%;
+    height: 100%;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.slide::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.2),
+            #080808
+        );
+
+    pointer-events: none;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 1s ease;
+}
+
+
+/* =========================================================
+   SLIDER ANIMATION
+========================================================= */
+
+@keyframes movieSlider {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    17% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-20%);
+    }
+
+    37% {
+        transform: translateX(-20%);
+    }
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    57% {
+        transform: translateX(-40%);
+    }
+
+    60% {
+        transform: translateX(-60%);
+    }
+
+    77% {
+        transform: translateX(-60%);
+    }
+
+    80% {
+        transform: translateX(-80%);
+    }
+
+    97% {
+        transform: translateX(-80%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   RECOMMENDED SECTION
+========================================================= */
+
+.recommended {
+    width: 100%;
+
+    padding: 55px 5% 80px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(212, 175, 55, 0.06),
+            transparent 45%
+        ),
+        #080808;
+}
+
+.recommended > div {
+    max-width: 1400px;
+    margin: auto;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.recommended h2 {
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+    color: #f5f1e8;
+
+    position: relative;
+    padding-left: 15px;
+}
+
+.recommended h2::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 5px;
+
+    width: 4px;
+    height: 28px;
+
+    background: #d4af37;
+
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   MOVIE POSTERS
+========================================================= */
+
+.poster {
+    display: inline-flex;
+    vertical-align: top;
+
+    flex-direction: column;
+
+    width: calc(20% - 16px);
+
+    margin-right: 16px;
+
+    margin-bottom: 30px;
+
+    cursor: pointer;
+}
+
+.posters {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.poster {
+    flex: 1;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.poster img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* =========================================================
+   POSTER IMAGE
+========================================================= */
+
+.poster img {
+    width: 100%;
+    height: 350px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+
+/* =========================================================
+   POSTER HOVER
+========================================================= */
+
+.poster:hover img {
+    transform: translateY(-10px) scale(1.02);
+
+    border-color: rgba(212, 175, 55, 0.6);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.7),
+        0 0 25px rgba(212, 175, 55, 0.08);
+}
+
+
+/* =========================================================
+   MOVIE TITLE
+========================================================= */
+
+.poster h3 {
+    color: #eee;
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    margin-top: 13px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.poster:hover h3 {
+    color: #d4af37;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    nav {
+        padding: 10px 3%;
+        gap: 12px;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    nav form {
+        gap: 6px;
+    }
+
+    nav form input[type="search"] {
+        width: 250px;
+    }
+
+    nav form button[type="submit"] {
+        padding: 0 12px;
+    }
+
+    nav select {
+        max-width: 120px;
+    }
+
+    .slider {
+        height: 420px;
+    }
+
+    .poster {
+        width: calc(25% - 15px);
+    }
+
+    .poster img {
+        height: 300px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    header {
+        position: relative;
+    }
+
+    nav {
+        min-height: 70px;
+        padding: 8px 4%;
+
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        width: 115px;
+        height: 48px;
+    }
+
+    nav form {
+        order: 3;
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+
+        padding-bottom: 8px;
+    }
+
+    nav form input[type="search"] {
+        width: 100%;
+    }
+
+    nav form button[type="submit"] {
+        width: 80px;
+    }
+
+    nav select {
+        width: 100%;
+    }
+
+    nav form button:last-child {
+        width: 100%;
+    }
+
+    nav label {
+        margin-left: auto;
+    }
+
+    .slider {
+        height: 280px;
+    }
+
+    .slide img {
+        object-position: center;
+    }
+
+    .recommended {
+        padding: 40px 4% 60px;
+    }
+
+    .recommended h2 {
+        font-size: 24px;
+    }
+
+    .poster {
+        width: calc(50% - 8px);
+        margin-right: 8px;
+    }
+
+    .poster:nth-of-type(even) {
+        margin-right: 0;
+    }
+
+    .poster img {
+        height: 270px;
+    }
+
+    .poster h3 {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .logo {
+        width: 100px;
+    }
+
+    nav form {
+        grid-template-columns: 1fr;
+    }
+
+    nav form button[type="submit"] {
+        width: 100%;
+    }
+
+    .slider {
+        height: 230px;
+    }
+
+    .poster {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .poster img {
+        height: 400px;
+    }
+
+    .poster h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
