@@ -1,1258 +1,1573 @@
-<!DOCTYPE html>
-<html lang="en">
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+:root {
+    --bg: #080808;
+    --surface: #101010;
+    --surface-2: #151515;
+    --text: #f5f5f5;
+    --muted: #9a9a9a;
+    --line: rgba(255,255,255,.09);
+    --accent: #e50914;
+    --accent-light: #ff1f2d;
+    --gold: #d6b36a;
+    --max-width: 1280px;
+    --radius: 18px;
+    --shadow: 0 25px 70px rgba(0,0,0,.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(229, 9, 20, .08),
+            transparent 30%
+        ),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(8, 8, 8, .75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.navbar {
+    max-width: var(--max-width);
+    min-height: 82px;
+    margin: auto;
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* LOGO */
+
+.logo {
+    width: 145px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* NAVIGATION */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    margin-left: auto;
+}
 
-<head>
+.nav-links a {
+    position: relative;
 
-    <meta charset="UTF-8">
+    color: #c7c7c7;
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
 
-    <meta name="description"
-        content="Movie-Flix - Discover movies, explore recommendations and find your next favorite movie.">
+    transition: .3s ease;
+}
 
-    <title>Movie-Flix | Discover Your Next Movie</title>
+.nav-links a::after {
+    content: "";
 
-    <link rel="stylesheet" href="Style.css">
+    position: absolute;
+    left: 0;
+    bottom: -9px;
 
-</head>
+    width: 0;
+    height: 2px;
 
+    background: var(--accent);
 
-<body>
+    transition: .3s ease;
+}
 
+.nav-links a:hover {
+    color: white;
+}
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+.nav-links a:hover::after {
+    width: 100%;
+}
 
-    <header class="header">
+/* SEARCH */
 
-        <nav class="navbar">
+.search-box {
+    width: 255px;
+    height: 42px;
 
+    display: flex;
 
-            <!-- LOGO -->
+    background: rgba(255,255,255,.06);
 
-            <a href="#home" class="logo-link">
+    border: 1px solid var(--line);
+    border-radius: 999px;
 
-                <img
-                    src="./Movie-Flix  Logo.png"
-                    class="logo"
-                    alt="Movie-Flix Logo">
+    overflow: hidden;
+}
 
-            </a>
+.search-box input {
+    flex: 1;
+    min-width: 0;
 
+    padding: 0 16px;
 
-            <!-- NAVIGATION -->
+    color: white;
+    background: transparent;
 
-            <div class="nav-links">
+    border: none;
+    outline: none;
+}
 
-                <a href="#home">Home</a>
+.search-box input::placeholder {
+    color: #777;
+}
 
-                <a href="#movies">Movies</a>
+.search-box button {
+    padding: 0 18px;
 
-                <a href="#services">Services</a>
+    border: none;
 
-                <a href="#testimonials">Reviews</a>
+    color: white;
+    background: var(--accent);
 
-                <a href="#contact">Contact</a>
+    font-size: 12px;
+    font-weight: 700;
 
-            </div>
+    cursor: pointer;
 
+    transition: .3s;
+}
 
-            <!-- SEARCH -->
+.search-box button:hover {
+    background: var(--accent-light);
+}
 
-            <form class="search-box">
+/* LOCATION */
 
-                <input
-                    type="search"
-                    placeholder="Search movies, events and more..."
-                    aria-label="Search movies">
+.location select {
+    padding: 10px 12px;
 
-                <button type="submit">
-                    Search
-                </button>
+    color: #ddd;
+    background: #151515;
 
-            </form>
+    border: 1px solid var(--line);
+    border-radius: 9px;
 
+    outline: none;
+}
 
-            <!-- LOCATION -->
+/* SIGN IN */
 
-            <div class="location">
+.signin-btn {
+    padding: 11px 19px;
 
-                <select aria-label="Select city">
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 999px;
 
-                    <option value="bengaluru">
-                        Bengaluru
-                    </option>
+    color: #090909;
+    background: white;
 
-                    <option value="hyderabad">
-                        Hyderabad
-                    </option>
+    font-weight: 700;
 
-                    <option value="chennai">
-                        Chennai
-                    </option>
+    cursor: pointer;
 
-                    <option value="pune">
-                        Pune
-                    </option>
+    transition: .3s;
+}
 
-                </select>
+.signin-btn:hover {
+    color: white;
+    background: var(--accent);
+    border-color: var(--accent);
+}
 
-            </div>
+/* MOBILE */
 
+.menu-toggle,
+.menu-icon,
+.mobile-menu {
+    display: none;
+}
 
-            <!-- SIGN IN -->
 
-            <button class="signin-btn">
-                Sign In
-            </button>
+/* =====================================================
+   HERO
+===================================================== */
 
+.slider {
+    position: relative;
 
-            <!-- MOBILE MENU -->
+    min-height: 760px;
 
-            <input
-                type="checkbox"
-                id="menu-toggle"
-                class="menu-toggle">
+    overflow: hidden;
 
-            <label
-                for="menu-toggle"
-                class="menu-icon">
+    background: #050505;
+}
 
-                ☰
+.slides {
+    display: flex;
 
-            </label>
+    width: 500%;
 
+    animation: movieSlider 28s infinite;
+}
 
-            <div class="mobile-menu">
+.slide {
+    position: relative;
 
-                <a href="#home">Home</a>
+    width: 20%;
+    min-height: 760px;
 
-                <a href="#movies">Movies</a>
+    display: flex;
+    align-items: center;
 
-                <a href="#services">Services</a>
+    overflow: hidden;
+}
 
-                <a href="#testimonials">Reviews</a>
+/* HERO IMAGE */
 
-                <a href="#contact">Contact</a>
+.slide > img {
+    position: absolute;
 
-                <button class="mobile-signin">
-                    Sign In
-                </button>
+    inset: 0;
 
-            </div>
+    width: 100%;
+    height: 100%;
 
-        </nav>
+    object-fit: cover;
 
-    </header>
+    filter: saturate(.9);
+}
 
+/* HERO OVERLAY */
 
+.slide::before {
+    content: "";
 
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
+    position: absolute;
 
-    <main id="home">
+    inset: 0;
 
+    z-index: 1;
 
-        <!-- =================================================
-             HERO / MOVIE SLIDER
-        ================================================== -->
+    background:
+        linear-gradient(
+            90deg,
+            #050505 0%,
+            rgba(5,5,5,.88) 23%,
+            rgba(5,5,5,.45) 55%,
+            rgba(5,5,5,.1) 100%
+        ),
+        linear-gradient(
+            0deg,
+            #080808 0%,
+            transparent 35%
+        );
+}
 
-        <section
-            class="slider"
-            aria-label="Featured movies">
+/* HERO CONTENT */
 
-            <div class="slides">
+.slide-content {
+    position: relative;
 
+    z-index: 2;
 
-                <!-- MOVIE 1 -->
+    width: min(650px, 90%);
 
-                <div class="slide">
+    margin-left: max(6vw, 30px);
 
-                    <img
-                        src="./Drishyam.jpg"
-                        alt="Drishyam movie poster">
+    padding-top: 70px;
+}
 
-                    <div class="slide-content">
+/* TAG */
 
-                        <span class="movie-tag">
-                            FEATURED MOVIE
-                        </span>
+.movie-tag,
+.section-heading > span,
+.services-heading > span,
+.testimonial-heading > span,
+.contact-heading > span,
+.cta-content > span {
 
-                        <h1>
-                            Drishyam
-                        </h1>
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
-                        <p>
-                            Experience suspense, mystery and
-                            unforgettable storytelling.
-                        </p>
+    color: #e5e5e5;
 
-                        <div class="hero-buttons">
+    font-size: 11px;
+    font-weight: 800;
 
-                            <a
-                                href="#movies"
-                                class="primary-btn">
+    letter-spacing: .18em;
 
-                                Explore Movies
+    text-transform: uppercase;
+}
 
-                            </a>
+.movie-tag::before,
+.section-heading > span::before,
+.services-heading > span::before,
+.testimonial-heading > span::before,
+.contact-heading > span::before,
+.cta-content > span::before {
 
-                            <a
-                                href="#services"
-                                class="secondary-btn">
+    content: "";
 
-                                Learn More
+    width: 24px;
+    height: 2px;
 
-                            </a>
+    background: var(--accent);
+}
 
-                        </div>
+/* HERO TITLE */
 
-                    </div>
+.slide h1 {
+    margin: 18px 0 14px;
 
-                </div>
+    font-family: "Playfair Display", serif;
 
+    font-size: clamp(48px, 6vw, 86px);
 
-                <!-- MOVIE 2 -->
+    line-height: .95;
 
-                <div class="slide">
+    letter-spacing: -.04em;
+}
 
-                    <img
-                        src="./Doomsday.jpg"
-                        alt="Avengers Doomsday movie poster">
+.slide p {
+    max-width: 520px;
 
-                    <div class="slide-content">
+    margin-bottom: 30px;
 
-                        <span class="movie-tag">
-                            COMING SOON
-                        </span>
+    color: #c2c2c2;
 
-                        <h1>
-                            Avengers: Doomsday
-                        </h1>
+    font-size: 17px;
+}
 
-                        <p>
-                            Get ready for another epic Marvel adventure.
-                        </p>
+/* HERO BUTTONS */
 
-                        <div class="hero-buttons">
+.hero-buttons {
+    display: flex;
+    gap: 12px;
 
-                            <a
-                                href="#movies"
-                                class="primary-btn">
+    flex-wrap: wrap;
+}
 
-                                View Movie
+.primary-btn,
+.secondary-btn {
 
-                            </a>
+    display: inline-flex;
 
-                        </div>
+    align-items: center;
+    justify-content: center;
 
-                    </div>
+    min-height: 48px;
 
-                </div>
+    padding: 0 24px;
 
+    border-radius: 999px;
 
-                <!-- MOVIE 3 -->
+    font-size: 13px;
+    font-weight: 800;
 
-                <div class="slide">
+    transition: .3s ease;
+}
 
-                    <img
-                        src="./Paradise.jpg"
-                        alt="The Paradise movie poster">
+.primary-btn {
+    color: white;
 
-                    <div class="slide-content">
+    background: var(--accent);
 
-                        <span class="movie-tag">
-                            NOW TRENDING
-                        </span>
+    box-shadow:
+        0 12px 35px rgba(229,9,20,.25);
+}
 
-                        <h1>
-                            The Paradise
-                        </h1>
+.primary-btn:hover {
+    background: var(--accent-light);
 
-                        <p>
-                            Discover a story that takes you
-                            beyond imagination.
-                        </p>
+    transform: translateY(-2px);
 
-                        <div class="hero-buttons">
+    box-shadow:
+        0 16px 40px rgba(229,9,20,.35);
+}
 
-                            <a
-                                href="#movies"
-                                class="primary-btn">
+.secondary-btn {
 
-                                Explore Now
+    border: 1px solid rgba(255,255,255,.25);
 
-                            </a>
+    background: rgba(255,255,255,.06);
 
-                        </div>
+    backdrop-filter: blur(10px);
+}
 
-                    </div>
+.secondary-btn:hover {
+    color: #080808;
 
-                </div>
+    background: white;
+}
 
+/* HERO SLIDER */
 
-                <!-- MOVIE 4 -->
+@keyframes movieSlider {
 
-                <div class="slide">
+    0%,
+    17% {
+        transform: translateX(0);
+    }
 
-                    <img
-                        src="./Spider.jpeg"
-                        alt="Spider-Man Brand New Day movie poster">
+    20%,
+    37% {
+        transform: translateX(-20%);
+    }
 
-                    <div class="slide-content">
+    40%,
+    57% {
+        transform: translateX(-40%);
+    }
 
-                        <span class="movie-tag">
-                            MARVEL
-                        </span>
+    60%,
+    77% {
+        transform: translateX(-60%);
+    }
 
-                        <h1>
-                            Spider-Man: Brand New Day
-                        </h1>
+    80%,
+    97% {
+        transform: translateX(-80%);
+    }
 
-                        <p>
-                            A new chapter begins for everyone's
-                            favorite web-slinger.
-                        </p>
+    100% {
+        transform: translateX(0);
+    }
+}
 
-                        <div class="hero-buttons">
 
-                            <a
-                                href="#movies"
-                                class="primary-btn">
+/* =====================================================
+   COMMON SECTION
+===================================================== */
 
-                                Discover
+.recommended,
+.services,
+.testimonials,
+.contact {
 
-                            </a>
+    max-width: var(--max-width);
 
-                        </div>
+    margin: auto;
 
-                    </div>
+    padding: 110px 28px;
+}
 
-                </div>
+.section-heading,
+.services-heading,
+.testimonial-heading,
+.contact-heading {
 
+    max-width: 680px;
 
-                <!-- MOVIE 5 -->
+    margin-bottom: 45px;
+}
 
-                <div class="slide">
+.section-heading h2,
+.services-heading h2,
+.testimonial-heading h2,
+.contact-heading h2 {
 
-                    <img
-                        src="./Toxic.jpg"
-                        alt="Toxic movie poster">
+    margin-top: 12px;
 
-                    <div class="slide-content">
+    font-family: "Playfair Display", serif;
 
-                        <span class="movie-tag">
-                            FEATURED
-                        </span>
+    font-size: clamp(38px, 5vw, 58px);
 
-                        <h1>
-                            Toxic
-                        </h1>
+    line-height: 1;
 
-                        <p>
-                            A fairy tale for grown-ups.
-                        </p>
+    letter-spacing: -.035em;
+}
 
-                        <div class="hero-buttons">
+.section-heading h2 strong,
+.services-heading h2 strong,
+.testimonial-heading h2 strong,
+.contact-heading h2 strong {
 
-                            <a
-                                href="#movies"
-                                class="primary-btn">
+    color: var(--accent);
 
-                                Watch Details
+    font-weight: inherit;
+}
 
-                            </a>
+.section-heading p,
+.services-heading p,
+.testimonial-heading p,
+.contact-heading p {
 
-                        </div>
+    max-width: 580px;
 
-                    </div>
+    margin-top: 16px;
 
-                </div>
+    color: var(--muted);
+}
 
-            </div>
 
-        </section>
+/* =====================================================
+   MOVIE CARDS
+===================================================== */
 
+.posters {
 
+    display: grid;
 
-        <!-- =================================================
-             RECOMMENDED MOVIES
-        ================================================== -->
+    grid-template-columns:
+        repeat(5, 1fr);
 
-        <section
-            class="recommended"
-            id="movies">
+    gap: 18px;
+}
 
+.poster {
 
-            <div class="section-heading">
+    overflow: hidden;
 
-                <span>
-                    TOP PICKS
-                </span>
+    background: var(--surface);
 
-                <h2>
-                    Recommended <strong>Movies</strong>
-                </h2>
+    border: 1px solid var(--line);
 
-                <p>
-                    Handpicked movies you don't want to miss.
-                </p>
+    border-radius: var(--radius);
 
-            </div>
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
 
+.poster:hover {
 
-            <div class="posters">
+    transform: translateY(-9px);
 
+    border-color:
+        rgba(229,9,20,.45);
 
-                <!-- MOVIE CARD 1 -->
+    box-shadow: var(--shadow);
+}
 
-                <article class="poster">
+/* IMAGE */
 
-                    <div class="poster-image">
+.poster-image {
 
-                        <img
-                            src="./drishyam-the-conclusion.avif"
-                            alt="Drishyam The Conclusion">
+    position: relative;
 
-                        <div class="poster-overlay">
+    aspect-ratio: 2 / 3;
 
-                            <a
-                                href="#"
-                                class="view-btn">
+    overflow: hidden;
+}
 
-                                View Details
+.poster-image img {
 
-                            </a>
+    width: 100%;
+    height: 100%;
 
-                        </div>
+    object-fit: cover;
 
-                    </div>
+    transition:
+        transform .5s ease;
+}
 
-                    <div class="poster-info">
+.poster:hover .poster-image img {
 
-                        <h3>
-                            Drishyam: The Conclusion
-                        </h3>
+    transform: scale(1.07);
+}
 
-                        <span>
-                            Thriller • Drama
-                        </span>
+/* IMAGE DARK GRADIENT */
 
-                    </div>
+.poster-image::after {
 
-                </article>
+    content: "";
 
+    position: absolute;
 
-                <!-- MOVIE CARD 2 -->
+    inset: 0;
 
-                <article class="poster">
+    background:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.75),
+            transparent 55%
+        );
+}
 
-                    <div class="poster-image">
+/* OVERLAY */
 
-                        <img
-                            src="./avengers-doomsday.avif"
-                            alt="Avengers Doomsday">
+.poster-overlay {
 
-                        <div class="poster-overlay">
+    position: absolute;
 
-                            <a
-                                href="#"
-                                class="view-btn">
+    inset: 0;
 
-                                View Details
+    z-index: 2;
 
-                            </a>
+    display: flex;
 
-                        </div>
+    align-items: flex-end;
 
-                    </div>
+    justify-content: center;
 
-                    <div class="poster-info">
+    padding: 20px;
 
-                        <h3>
-                            Avengers: Doomsday
-                        </h3>
+    background:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.85),
+            transparent 65%
+        );
 
-                        <span>
-                            Action • Superhero
-                        </span>
+    opacity: 0;
 
-                    </div>
+    transition: .3s ease;
+}
 
-                </article>
+.poster:hover .poster-overlay {
 
+    opacity: 1;
+}
 
-                <!-- MOVIE CARD 3 -->
+.view-btn {
 
-                <article class="poster">
+    width: 100%;
 
-                    <div class="poster-image">
+    padding: 11px;
 
-                        <img
-                            src="./the-paradise-.avif"
-                            alt="The Paradise">
+    text-align: center;
 
-                        <div class="poster-overlay">
+    border-radius: 999px;
 
-                            <a
-                                href="#"
-                                class="view-btn">
+    color: #080808;
 
-                                View Details
+    background: white;
 
-                            </a>
+    font-size: 12px;
+    font-weight: 800;
+}
 
-                        </div>
+/* INFO */
 
-                    </div>
+.poster-info {
 
-                    <div class="poster-info">
+    padding: 17px 15px 19px;
+}
 
-                        <h3>
-                            The Paradise
-                        </h3>
+.poster-info h3 {
 
-                        <span>
-                            Action • Drama
-                        </span>
+    margin-bottom: 6px;
 
-                    </div>
+    font-size: 15px;
 
-                </article>
+    line-height: 1.25;
+}
 
+.poster-info span {
 
-                <!-- MOVIE CARD 4 -->
+    color: #777;
 
-                <article class="poster">
+    font-size: 12px;
+}
 
-                    <div class="poster-image">
 
-                        <img
-                            src="./spider-man-brand-new-day-.avif"
-                            alt="Spider-Man Brand New Day">
+/* =====================================================
+   SERVICES
+===================================================== */
 
-                        <div class="poster-overlay">
+.services {
 
-                            <a
-                                href="#"
-                                class="view-btn">
+    max-width: none;
 
-                                View Details
+    background: #0d0d0d;
 
-                            </a>
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
 
-                        </div>
+.services-heading,
+.services-container {
 
-                    </div>
+    max-width: var(--max-width);
 
-                    <div class="poster-info">
+    margin-left: auto;
+    margin-right: auto;
+}
 
-                        <h3>
-                            Spider-Man: Brand New Day
-                        </h3>
+.services-container {
 
-                        <span>
-                            Action • Adventure
-                        </span>
+    display: grid;
 
-                    </div>
+    grid-template-columns:
+        repeat(4, 1fr);
 
-                </article>
+    gap: 18px;
+}
 
+.service-card {
 
-                <!-- MOVIE CARD 5 -->
+    min-height: 290px;
 
-                <article class="poster">
+    padding: 30px;
 
-                    <div class="poster-image">
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0d0d0d
+        );
 
-                        <img
-                            src="./toxic a.avif"
-                            alt="Toxic">
+    border: 1px solid var(--line);
 
-                        <div class="poster-overlay">
+    border-radius: var(--radius);
 
-                            <a
-                                href="#"
-                                class="view-btn">
+    transition: .35s ease;
+}
 
-                                View Details
+.service-card:hover {
 
-                            </a>
+    transform: translateY(-6px);
 
-                        </div>
+    border-color:
+        rgba(214,179,106,.45);
+}
 
-                    </div>
+/* ICON */
 
-                    <div class="poster-info">
+.service-icon {
 
-                        <h3>
-                            Toxic
-                        </h3>
+    width: 54px;
+    height: 54px;
 
-                        <span>
-                            Action • Drama
-                        </span>
+    display: grid;
 
-                    </div>
+    place-items: center;
 
-                </article>
+    margin-bottom: 35px;
 
-            </div>
+    border-radius: 14px;
 
-        </section>
+    background:
+        rgba(229,9,20,.1);
 
+    border:
+        1px solid rgba(229,9,20,.22);
 
+    font-size: 23px;
+}
 
-        <!-- =================================================
-             SERVICES
-        ================================================== -->
+.service-card h3 {
 
-        <section
-            class="services"
-            id="services">
+    margin-bottom: 10px;
 
+    font-family:
+        "Playfair Display",
+        serif;
 
-            <div class="services-heading">
+    font-size: 23px;
+}
 
-                <span>
-                    WHAT WE OFFER
-                </span>
+.service-card p {
 
-                <h2>
-                    Explore <strong>Our Services</strong>
-                </h2>
+    margin-bottom: 22px;
 
-                <p>
-                    Everything you need to discover, explore
-                    and enjoy your favorite movies.
-                </p>
+    color: var(--muted);
 
-            </div>
+    font-size: 14px;
+}
 
+.service-card a {
 
-            <div class="services-container">
+    color: white;
 
+    font-size: 12px;
+    font-weight: 800;
 
-                <!-- SERVICE 1 -->
+    text-transform: uppercase;
 
-                <article class="service-card">
+    letter-spacing: .08em;
+}
 
-                    <div class="service-icon">
-                        🎬
-                    </div>
+.service-card a:hover {
 
-                    <h3>
-                        Movie Discovery
-                    </h3>
+    color: var(--accent);
+}
 
-                    <p>
-                        Discover exciting movies from different
-                        genres and explore new titles worth watching.
-                    </p>
 
-                    <a href="#movies">
-                        Explore Movies →
-                    </a>
+/* =====================================================
+   TESTIMONIALS
+===================================================== */
 
-                </article>
+.testimonial-container {
 
+    display: grid;
 
-                <!-- SERVICE 2 -->
+    grid-template-columns:
+        repeat(3, 1fr);
 
-                <article class="service-card">
+    gap: 18px;
+}
 
-                    <div class="service-icon">
-                        🔎
-                    </div>
+.testimonial-card {
 
-                    <h3>
-                        Smart Search
-                    </h3>
+    padding: 32px;
 
-                    <p>
-                        Quickly find your favorite movies and get
-                        the information you're looking for with ease.
-                    </p>
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0b0b0b
+        );
 
-                    <a href="#">
-                        Search Movies →
-                    </a>
+    border:
+        1px solid var(--line);
 
-                </article>
+    border-radius: var(--radius);
+}
 
+.quote {
 
-                <!-- SERVICE 3 -->
+    color: var(--accent);
 
-                <article class="service-card">
+    font-family: Georgia, serif;
 
-                    <div class="service-icon">
-                        ⭐
-                    </div>
+    font-size: 55px;
 
-                    <h3>
-                        Movie Details
-                    </h3>
+    line-height: .7;
+}
 
-                    <p>
-                        Explore movie descriptions, posters,
-                        ratings, genres and other useful information.
-                    </p>
+.testimonial-text {
 
-                    <a href="#movies">
-                        View Details →
-                    </a>
+    margin: 20px 0 30px;
 
-                </article>
+    color: #c5c5c5;
 
+    font-size: 14px;
+}
 
-                <!-- SERVICE 4 -->
+.testimonial-user {
 
-                <article class="service-card">
+    display: flex;
 
-                    <div class="service-icon">
-                        📱
-                    </div>
+    align-items: center;
 
-                    <h3>
-                        Responsive Experience
-                    </h3>
+    gap: 12px;
+}
 
-                    <p>
-                        Enjoy a smooth movie browsing experience
-                        across desktop, tablet and mobile devices.
-                    </p>
+.user-avatar {
 
-                    <a href="#">
-                        Learn More →
-                    </a>
+    width: 42px;
+    height: 42px;
 
-                </article>
+    display: grid;
 
-            </div>
+    place-items: center;
 
-        </section>
+    border-radius: 50%;
 
+    color: #111;
 
+    background: white;
 
-        <!-- =================================================
-             TESTIMONIALS
-        ================================================== -->
+    font-size: 12px;
+    font-weight: 800;
+}
 
-        <section
-            class="testimonials"
-            id="testimonials">
+.testimonial-user h3 {
 
+    font-size: 14px;
+}
 
-            <div class="testimonial-heading">
+.testimonial-user span {
 
-                <span>
-                    WHAT PEOPLE SAY
-                </span>
+    color: #777;
 
-                <h2>
-                    User <strong>Testimonials</strong>
-                </h2>
+    font-size: 11px;
+}
 
-                <p>
-                    See what movie lovers think about their
-                    Movie-Flix experience.
-                </p>
 
-            </div>
+/* =====================================================
+   CONTACT
+===================================================== */
 
+.contact {
 
-            <div class="testimonial-container">
+    max-width: none;
 
+    background:
+        radial-gradient(
+            circle at 10% 50%,
+            rgba(229,9,20,.08),
+            transparent 30%
+        ),
+        #0b0b0b;
+}
 
-                <!-- TESTIMONIAL 1 -->
+.contact-heading,
+.contact-form-wrapper {
 
-                <article class="testimonial-card">
+    max-width: 850px;
 
-                    <div class="quote">
-                        “
-                    </div>
+    margin-left: auto;
+    margin-right: auto;
+}
 
-                    <p class="testimonial-text">
+.contact-form-wrapper {
 
-                        Movie-Flix makes it really easy to
-                        discover movies. The clean design and
-                        simple navigation make the experience
-                        enjoyable.
+    padding: 38px;
 
-                    </p>
+    background:
+        rgba(255,255,255,.025);
 
+    border:
+        1px solid var(--line);
 
-                    <div class="testimonial-user">
+    border-radius: 24px;
 
-                        <div class="user-avatar">
-                            AK
-                        </div>
+    box-shadow: var(--shadow);
+}
 
-                        <div>
+.contact-form {
 
-                            <h3>
-                                Arjun Kumar
-                            </h3>
+    display: grid;
 
-                            <span>
-                                Movie Enthusiast
-                            </span>
+    grid-template-columns:
+        repeat(2, 1fr);
 
-                        </div>
+    gap: 20px;
+}
 
-                    </div>
+.form-group {
 
-                </article>
+    display: flex;
 
+    flex-direction: column;
 
-                <!-- TESTIMONIAL 2 -->
+    gap: 8px;
+}
 
-                <article class="testimonial-card">
+.form-group:nth-child(5),
+.form-checkbox,
+.form-submit {
 
-                    <div class="quote">
-                        “
-                    </div>
+    grid-column: 1 / -1;
+}
 
-                    <p class="testimonial-text">
+.form-group label,
+.form-checkbox label {
 
-                        I like how quickly I can browse through
-                        different movies and find the information
-                        I need without unnecessary complexity.
+    color: #bbb;
 
-                    </p>
+    font-size: 12px;
 
+    font-weight: 700;
+}
 
-                    <div class="testimonial-user">
+.form-group input,
+.form-group select,
+.form-group textarea {
 
-                        <div class="user-avatar">
-                            RS
-                        </div>
+    width: 100%;
 
-                        <div>
+    padding: 13px 15px;
 
-                            <h3>
-                                Rahul Sharma
-                            </h3>
+    color: white;
 
-                            <span>
-                                Movie Lover
-                            </span>
+    background: #111;
 
-                        </div>
+    border:
+        1px solid rgba(255,255,255,.1);
 
-                    </div>
+    border-radius: 10px;
 
-                </article>
+    outline: none;
 
+    transition: .25s ease;
+}
 
-                <!-- TESTIMONIAL 3 -->
+.form-group textarea {
 
-                <article class="testimonial-card">
+    resize: vertical;
+}
 
-                    <div class="quote">
-                        “
-                    </div>
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
 
-                    <p class="testimonial-text">
+    border-color: var(--accent);
 
-                        The dark cinema-style interface looks
-                        modern and the responsive layout works
-                        smoothly across different devices.
+    box-shadow:
+        0 0 0 3px
+        rgba(229,9,20,.08);
+}
 
-                    </p>
+.form-group input::placeholder,
+.form-group textarea::placeholder {
 
+    color: #666;
+}
 
-                    <div class="testimonial-user">
+.form-checkbox {
 
-                        <div class="user-avatar">
-                            NP
-                        </div>
+    display: flex;
 
-                        <div>
+    align-items: center;
 
-                            <h3>
-                                Neha Patel
-                            </h3>
+    gap: 9px;
+}
 
-                            <span>
-                                Regular User
-                            </span>
+.form-checkbox input {
 
-                        </div>
+    accent-color: var(--accent);
+}
 
-                    </div>
+.form-submit {
 
-                </article>
+    min-height: 50px;
 
-            </div>
+    border: none;
 
-        </section>
+    border-radius: 999px;
 
+    color: white;
 
+    background: var(--accent);
 
-        <!-- =================================================
-             CONTACT FORM
-        ================================================== -->
+    font-weight: 800;
 
-        <section
-            class="contact"
-            id="contact">
+    cursor: pointer;
 
+    transition: .3s ease;
+}
 
-            <div class="contact-heading">
+.form-submit:hover {
 
-                <span>
-                    GET IN TOUCH
-                </span>
+    background: var(--accent-light);
 
-                <h2>
-                    Contact <strong>Movie-Flix</strong>
-                </h2>
+    transform: translateY(-2px);
+}
 
-                <p>
-                    Have a movie suggestion, feedback or a question?
-                    Send us a message.
-                </p>
 
-            </div>
+/* =====================================================
+   CTA
+===================================================== */
 
+.cta {
 
-            <div class="contact-form-wrapper">
+    position: relative;
 
+    padding: 120px 28px;
 
-                <form
-                    class="contact-form"
-                    action="#"
-                    method="post">
+    overflow: hidden;
 
+    text-align: center;
 
-                    <!-- NAME -->
+    background:
+        linear-gradient(
+            135deg,
+            rgba(229,9,20,.15),
+            transparent 50%
+        ),
+        #090909;
 
-                    <div class="form-group">
+    border-top:
+        1px solid var(--line);
+}
 
-                        <label for="name">
-                            Full Name
-                        </label>
+.cta::before,
+.cta::after {
 
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Enter your full name"
-                            required>
+    content: "";
 
-                    </div>
+    position: absolute;
 
+    width: 280px;
+    height: 280px;
 
-                    <!-- EMAIL -->
+    border-radius: 50%;
 
-                    <div class="form-group">
+    filter: blur(90px);
 
-                        <label for="email">
-                            Email Address
-                        </label>
+    background:
+        rgba(229,9,20,.12);
+}
 
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email address"
-                            required>
+.cta::before {
 
-                    </div>
+    top: -180px;
+    left: -100px;
+}
 
+.cta::after {
 
-                    <!-- SUBJECT -->
+    right: -100px;
+    bottom: -180px;
+}
 
-                    <div class="form-group">
+.cta-content {
 
-                        <label for="subject">
-                            Subject
-                        </label>
+    position: relative;
 
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            placeholder="Enter subject"
-                            required>
+    z-index: 2;
+}
 
-                    </div>
+.cta h2 {
 
+    max-width: 750px;
 
-                    <!-- FAVORITE MOVIE -->
+    margin: 18px auto;
 
-                    <div class="form-group">
+    font-family:
+        "Playfair Display",
+        serif;
 
-                        <label for="movie">
-                            Favorite Movie
-                        </label>
+    font-size:
+        clamp(45px, 6vw, 75px);
 
-                        <select
-                            id="movie"
-                            name="movie">
+    line-height: .98;
+}
 
-                            <option value="">
-                                Select a movie
-                            </option>
+.cta h2 strong {
 
-                            <option value="drishyam">
-                                Drishyam: The Conclusion
-                            </option>
+    color: var(--accent);
 
-                            <option value="doomsday">
-                                Avengers: Doomsday
-                            </option>
+    font-weight: inherit;
+}
 
-                            <option value="paradise">
-                                The Paradise
-                            </option>
+.cta p {
 
-                            <option value="spiderman">
-                                Spider-Man: Brand New Day
-                            </option>
+    max-width: 520px;
 
-                            <option value="toxic">
-                                Toxic
-                            </option>
+    margin:
+        0 auto 28px;
 
-                            <option value="other">
-                                Other
-                            </option>
+    color: var(--muted);
+}
 
-                        </select>
 
-                    </div>
+/* =====================================================
+   FOOTER
+===================================================== */
 
+.footer {
 
-                    <!-- MESSAGE -->
+    background: #050505;
 
-                    <div class="form-group">
+    border-top:
+        1px solid var(--line);
+}
 
-                        <label for="message">
-                            Your Message
-                        </label>
+.footer-container {
 
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="6"
-                            placeholder="Write your message here..."
-                            required></textarea>
+    max-width: var(--max-width);
 
-                    </div>
+    margin: auto;
 
+    padding: 75px 28px;
 
-                    <!-- CHECKBOX -->
+    display: grid;
 
-                    <div class="form-checkbox">
+    grid-template-columns:
+        1.6fr 1fr 1fr 1fr;
 
-                        <input
-                            type="checkbox"
-                            id="updates"
-                            name="updates">
+    gap: 45px;
+}
 
-                        <label for="updates">
-                            Send me updates about new movies
-                            and releases.
-                        </label>
+.footer-logo {
 
-                    </div>
+    width: 145px;
 
+    margin-bottom: 18px;
+}
 
-                    <!-- SUBMIT BUTTON -->
+.footer-about p {
 
-                    <button
-                        type="submit"
-                        class="form-submit">
+    max-width: 300px;
 
-                        Send Message
-                        <span>→</span>
+    color: #777;
 
-                    </button>
+    font-size: 13px;
+}
 
-                </form>
+.footer-links,
+.footer-social {
 
-            </div>
+    display: flex;
 
-        </section>
+    flex-direction: column;
 
+    gap: 11px;
+}
 
+.footer h3 {
 
-        <!-- =================================================
-             CALL TO ACTION
-        ================================================== -->
+    margin-bottom: 10px;
 
-        <section class="cta">
+    color: white;
 
-            <div class="cta-content">
+    font-size: 13px;
 
-                <span>
-                    YOUR NEXT MOVIE IS WAITING
-                </span>
+    text-transform: uppercase;
 
-                <h2>
-                    Find Something You'll
-                    <strong>Love Watching</strong>
-                </h2>
+    letter-spacing: .1em;
+}
 
-                <p>
-                    Explore our collection and discover
-                    your next favorite movie today.
-                </p>
+.footer-links a,
+.social-icons a {
 
-                <a
-                    href="#movies"
-                    class="primary-btn">
+    width: fit-content;
 
-                    Explore Movies
+    color: #777;
 
-                </a>
+    font-size: 13px;
 
-            </div>
+    transition: .25s ease;
+}
 
-        </section>
+.footer-links a:hover,
+.social-icons a:hover {
 
+    color: white;
 
-    </main>
+    transform: translateX(3px);
+}
 
+.social-icons {
 
+    display: flex;
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+    flex-direction: column;
 
-    <footer class="footer">
+    gap: 11px;
+}
 
+.footer-bottom {
 
-        <div class="footer-container">
+    max-width: var(--max-width);
 
+    margin: auto;
 
-            <!-- ABOUT -->
+    padding: 20px 28px 28px;
 
-            <div class="footer-about">
+    display: flex;
 
-                <img
-                    src="./Movie-Flix  Logo.png"
-                    alt="Movie-Flix Logo"
-                    class="footer-logo">
+    justify-content: space-between;
 
-                <p>
-                    Movie-Flix is your place to discover,
-                    explore and enjoy movies.
-                </p>
+    gap: 20px;
 
-            </div>
+    border-top:
+        1px solid var(--line);
 
+    color: #555;
 
-            <!-- QUICK LINKS -->
+    font-size: 11px;
+}
 
-            <div class="footer-links">
 
-                <h3>
-                    Quick Links
-                </h3>
+/* =====================================================
+   TABLET
+===================================================== */
 
-                <a href="#home">
-                    Home
-                </a>
+@media (max-width: 1100px) {
 
-                <a href="#movies">
-                    Movies
-                </a>
+    .nav-links {
+        gap: 15px;
+    }
 
-                <a href="#services">
-                    Services
-                </a>
+    .search-box {
+        width: 190px;
+    }
 
-                <a href="#testimonials">
-                    Reviews
-                </a>
+    .posters {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
 
-                <a href="#contact">
-                    Contact
-                </a>
+    .services-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 
-            </div>
+    .footer-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
 
 
-            <!-- MOVIES -->
+/* =====================================================
+   MOBILE
+===================================================== */
 
-            <div class="footer-links">
+@media (max-width: 850px) {
 
-                <h3>
-                    Movies
-                </h3>
+    .navbar {
 
-                <a href="#">
-                    Top Movies
-                </a>
+        min-height: 72px;
 
-                <a href="#">
-                    New Releases
-                </a>
+        padding:
+            0 20px;
+    }
 
-                <a href="#">
-                    Trending
-                </a>
+    .nav-links,
+    .search-box,
+    .location,
+    .signin-btn {
 
-                <a href="#">
-                    Upcoming
-                </a>
+        display: none;
+    }
 
-            </div>
+    .menu-icon {
 
+        display: block;
 
-            <!-- SOCIAL -->
+        margin-left: auto;
 
-            <div class="footer-social">
+        color: white;
 
-                <h3>
-                    Follow Us
-                </h3>
+        font-size: 26px;
 
-                <div class="social-icons">
+        cursor: pointer;
+    }
 
-                    <a href="#">
-                        Instagram
-                    </a>
+    .menu-toggle {
+        display: none;
+    }
 
-                    <a href="#">
-                        Facebook
-                    </a>
+    .mobile-menu {
 
-                    <a href="#">
-                        YouTube
-                    </a>
+        position: absolute;
 
-                </div>
+        top: 72px;
+        left: 0;
 
-            </div>
+        width: 100%;
 
-        </div>
+        padding: 22px;
 
+        display: none;
 
-        <!-- FOOTER BOTTOM -->
+        flex-direction: column;
 
-        <div class="footer-bottom">
+        gap: 17px;
 
-            <p>
-                © 2026 Movie-Flix. All Rights Reserved.
-            </p>
+        background:
+            rgba(8,8,8,.98);
 
-            <p>
-                Designed & Developed by Aftab
-            </p>
+        border-bottom:
+            1px solid var(--line);
+    }
 
-        </div>
+    .mobile-menu a {
 
-    </footer>
+        color: #ccc;
 
+        font-size: 14px;
 
-</body>
+        text-transform: uppercase;
 
-</html>
-```
+        letter-spacing: .08em;
+    }
+
+    .menu-toggle:checked ~ .mobile-menu {
+        display: flex;
+    }
+
+    .slider,
+    .slide {
+        min-height: 680px;
+    }
+
+    .slide-content {
+        margin-left: 25px;
+    }
+
+    .testimonial-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .logo {
+        width: 125px;
+    }
+
+    .recommended,
+    .services,
+    .testimonials,
+    .contact {
+
+        padding:
+            80px 18px;
+    }
+
+    .slide-content {
+
+        width:
+            calc(100% - 36px);
+
+        margin-left: 18px;
+    }
+
+    .slide h1 {
+
+        font-size: 47px;
+    }
+
+    .slide p {
+
+        font-size: 14px;
+    }
+
+    .posters,
+    .services-container {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .poster-info {
+
+        padding:
+            13px 11px 15px;
+    }
+
+    .poster-info h3 {
+
+        font-size: 13px;
+    }
+
+    .service-card {
+
+        padding: 20px;
+
+        min-height: 250px;
+    }
+
+    .service-card h3 {
+
+        font-size: 19px;
+    }
+
+    .contact-form-wrapper {
+
+        padding: 22px;
+    }
+
+    .contact-form {
+
+        grid-template-columns: 1fr;
+    }
+
+    .form-group:nth-child(5),
+    .form-checkbox,
+    .form-submit {
+
+        grid-column: auto;
+    }
+
+    .footer-container {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 30px;
+    }
+
+    .footer-bottom {
+
+        flex-direction: column;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .posters,
+    .services-container,
+    .footer-container {
+
+        grid-template-columns: 1fr;
+    }
+
+    .slide h1 {
+
+        font-size: 40px;
+    }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .slides {
+        animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
